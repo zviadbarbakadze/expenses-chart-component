@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+  
+  <title>Frontend Mentor | Expenses chart component</title>
+
+ 
+</head>
+<body>
+  
+  <div class="main-container">
+    <div class="header-container">
+      <div class="balance-container">
+        <h4 class="my-balance-text"> My balance</h4>
+      <h2 class="balance-digits">$921.48</h2>
+      </div>
+     <div class="logo"><img src="./images/logo.svg" alt=""></div>
+    </div>
+    <div class="bodycontainer">
+      <h1 class="spnding-text">Spending - Last 7 days</h1>
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+
+<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+<script>
+ 
+  
+  let http=new XMLHttpRequest();
+  http.open('get','data.json',true);
+  http.send();
+  http.onload=function(){
+    if(this.readyState== 4 && this.status==200){
+      let result=JSON.parse(this.responseText);
+      var yValues=''
+     yValues=result.map(a=>a.amount);
+     
+      
+     
+      
+     
+     
+     
+      var xValues = ["mon", "tue", "wed", "thue", "fri","sat","sun"];
+//var yValues =['17.45','34.91','52.36','31.07','23.39','43.28','25.48'];
+
+var barColors = ['orange', "orange","cyan","orange","orange","orange","orange"];
+
+
+new Chart("myChart", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data:yValues
+
+    }]
+  },
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: ""
+    }
+  }
+});
+     
+    }
+    
+  }
+ 
+</script>
+
+
+      
+    </div>
+    <div class="footer">
+      <div class="left-footer">
+      <p class="total-text">Total this month</p>
+      <h2 class="balance-digits">
+        $478.33
+      </h2>
+    </div>
+    <div class="right-footer">
+      <h4 class="procent-digit">
+        +2.4%
+
+      </h4>
+      <h5 class="last-month-text">
+        from last month
+      </h5>
+    </div>
+
+    </div>
+  </div>
+
+  
+
+ 
+  
+  
+  
+  
+  
+  
+
+  
+ 
+
+  
+
+    
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  <script
+  src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+  </script>
+</body>
+</html>
